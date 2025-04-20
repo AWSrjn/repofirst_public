@@ -1,0 +1,57 @@
+pipeline {
+
+    agent any
+ 
+    stages {
+
+        stage('git clone') {
+
+            steps {
+
+                git 'https://github.com/AWSrjn/repofirst_public.git'
+
+            }
+
+        }
+
+        stage('maven project package') {
+
+            steps {
+
+                sh 'mvn clean package'
+
+            }
+
+        }
+
+    }
+
+}
+ 
+pipeline {
+
+    agent any
+
+tools{
+
+maven 'maven3.6.1'
+
+}
+
+    stages {
+
+        stage('maven version') {
+
+            steps {
+
+                sh 'mvn --version'
+
+            }
+
+        }
+
+    }
+
+}
+
+ 
